@@ -17,6 +17,10 @@
 
 #scenes{
   display: flex;
+
+}
+
+#scene{
   border-style: solid;
   border-color: #61dafb;
   border-radius: 25px;
