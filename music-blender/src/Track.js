@@ -28,6 +28,12 @@ class Track extends React.PureComponent {
       height: "0",
       width: "0",
       videoId: id,
+      playerVars: {
+        'controls': 0, // hides player controls
+        'disablekb': 1, // disables keyboard input
+        'fs': 0, // prevents fullscreen
+        'loop':1 // loops video
+      },
       events: {
         onReady: this.onPlayerReady,
       },
@@ -43,7 +49,7 @@ class Track extends React.PureComponent {
     const { id } = this.props;
     return (
       <div>
-        <h2>{this.props.name}</h2>
+        <p>{this.props.name}</p>
         <div id={this.elem_id} />
         <ContinuousSlider trackId={this.elem_id}></ContinuousSlider>
       </div>

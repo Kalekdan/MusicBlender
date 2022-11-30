@@ -26,9 +26,15 @@ export function PlayButton() {
         <FontAwesomeIcon icon="fa-sharp fa-solid fa-play" />
         Click Me
       </button>
-      {tracks.map((item, i) => (
-        <div key={i}>{item}</div>
-      ))}
+      <div id={"scenes"}>
+        <div id={"tracklist"}>
+          {tracks.map((item, i) => (
+            <div id={"track"} key={i}>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
