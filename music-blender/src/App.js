@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
 import {PlayButton} from './PlayButton';
-import Slider from '@mui/material/Slider';
 
 function App() {
   return (

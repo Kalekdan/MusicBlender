@@ -46,7 +46,6 @@ class Track extends React.PureComponent {
   };
 
   render = () => {
-    const { id } = this.props;
     return (
       <div>
         <p>{this.props.name}</p>
