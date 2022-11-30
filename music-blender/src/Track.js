@@ -49,7 +49,7 @@ class Track extends React.PureComponent {
     return (
       <div>
         <p>{this.props.name}</p>
-        <div id={this.elem_id} />
+        <div id={this.elem_id} class={'ytFrame'}/>
         <ContinuousSlider trackId={this.elem_id}></ContinuousSlider>
       </div>
     );

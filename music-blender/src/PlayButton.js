@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import Track from "./Track";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Scene } from "./Scene";
 
 export function PlayButton() {
-  const [tracks, setTracks] = useState([]);
+  const [scenes, setScenes] = useState([]);
   const handleClick = () => {
     // implementation details
-    setTracks((tracks) => [
-      ...tracks,
-      <Track id="H8n7K3jABhI" name="Battle Music" scene="Combat" />,
-      <Track id="DHv55PwhpbQ" name="Calm" scene="Ambient" />,
-    ]);
+    let scName = document.getElementById("sceneName").value;
+    setScenes((scenes) => [...scenes, <Scene sceneName={scName}/>]);
   };
 
   //Load yt api script before creating tracks
@@ -22,18 +18,20 @@ export function PlayButton() {
 
   return (
     <div>
+      <form>
+        <label for="sceneName">Scene Name:</label>
+        <br></br>
+        <input type="text" id="sceneName" name="sceneName"></input>
+      </form>
       <button type="button" onClick={handleClick}>
-        <FontAwesomeIcon icon="fa-sharp fa-solid fa-play" />
-        Click Me
+        Create Scene
       </button>
-      <div id={"scenes"}>
-        <div id={"tracklist"}>
-          {tracks.map((item, i) => (
-            <div id={"track"} key={i}>
-              {item}
-            </div>
-          ))}
-        </div>
+      <div class={"scenes"}>
+        {scenes.map((item, i) => (
+          <div class={"scene"} key={i}>
+            {item}
+          </div>
+        ))}
       </div>
     </div>
   );
