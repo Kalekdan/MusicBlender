@@ -5,13 +5,21 @@ import Slider from '@mui/material/Slider';
 
 export function ContinuousSlider(props) {
   const [value, setValue] = useState(50);
-  const trackId = props.trackId;
+  let trackId = props.trackId;
+
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-    let elem = document.getElementById(trackId);
-    console.log(elem);
-    // elem.pause();
-  };
+   setValue(newValue);
+    let iframe = document.getElementById(trackId);
+    let func = 'setVolume';
+    let args = [newValue];
+    if ( iframe.src.indexOf('youtube.com/embed') !== -1) {
+      iframe.contentWindow.postMessage( JSON.stringify({
+          'event': 'command',
+          'func': func,
+          'args': args || []
+      } ), '*');
+  }
+}  ;
 
   return (
     <Box sx={{ width: 200 }}>

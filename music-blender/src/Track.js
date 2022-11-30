@@ -1,24 +1,66 @@
 import { ContinuousSlider } from "./VolumeSlider";
+import PropTypes from "prop-types";
+import React from "react";
 
-export function Track(props) {
-  const name = props.name;
-  const volume = props.volume;
-  const scene = props.scene;
-  let id = props.id + "-" + props.scene;
-  return (
-    <div>
-    <h2>{props.name}</h2>
-    <iframe
-      id={id}
-      width="0"
-      height="0"
-      src={"https://www.youtube.com/embed/" + props.id + "?autoplay=1"}//temp disable autoplay
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
-    <ContinuousSlider trackId={id}></ContinuousSlider>
-    </div>
-  );
+// import classes from 'styles/YouTubeVideo.module.css';
+
+class Track extends React.PureComponent {
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    scene: PropTypes.string.isRequired,
+  };
+  elem_id = this.props.id + "-" + this.props.scene; //make this unique to allow multiple concurrent
+
+  componentDidMount = () => {
+    // On mount, check to see if the API script is already loaded
+
+    if (!window.YT) {
+      // If not, load the script asynchronously
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+
+      // onYouTubeIframeAPIReady will load the video after the script is loaded
+      window.onYouTubeIframeAPIReady = this.loadVideo;
+
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    } else {
+      // If script is already there, load the video directly
+      this.loadVideo();
+    }
+  };
+
+  loadVideo = () => {
+    const { id } = this.props;
+
+    // the Player object is created uniquely based on the id in props
+    this.player = new window.YT.Player(this.elem_id, {
+      height: '0',
+      width: '0',
+      videoId: id,
+      events: {
+        onReady: this.onPlayerReady,
+      },
+    });
+  };
+
+  onPlayerReady = (event) => {
+    event.target.playVideo();
+    // console.log(event.target);
+  };
+
+
+  render = () => {
+    const { id } = this.props;
+    return (
+      <div>
+        <h2>{this.props.name}</h2>
+        <div id={this.elem_id} />
+        <ContinuousSlider trackId={this.elem_id}></ContinuousSlider>
+      </div>
+    );
+  };
 }
+
+export default Track;
