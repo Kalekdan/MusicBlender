@@ -25,15 +25,19 @@ class Track extends React.PureComponent {
 
       const firstScriptTag = document.getElementsByTagName("script")[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      console.log('first load');
     } else {
       // If script is already there, load the video directly
-      this.loadVideo();
+      this.loadVideo(); 
+      console.log('already loaded');
     }
+    console.log('componentDidMount');
+    console.log(window.YT);
+
   };
 
   loadVideo = () => {
     const { id } = this.props;
-
     // the Player object is created uniquely based on the id in props
     this.player = new window.YT.Player(this.elem_id, {
       height: '0',
