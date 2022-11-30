@@ -26,9 +26,9 @@ export function PlayButton() {
       <button type="button" onClick={handleClick}>
         Create Scene
       </button>
-      <div id={"scenes"}>
+      <div class={"scenes"}>
         {scenes.map((item, i) => (
-          <div id={"scene"} key={i}>
+          <div class={"scene"} key={i}>
             {item}
           </div>
         ))}
