@@ -17,7 +17,6 @@
 
 #scenes{
   display: flex;
-
 }
 
 #scene{
@@ -30,11 +29,11 @@
   padding-right: 5px;
 }
 
-#tracklist {
+/* #tracklist {
 }
 
 #track {
-}
+} */
 
 iframe{
   display:block;

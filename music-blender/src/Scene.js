@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Track from "./Track";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faCoffee, faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
 
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
@@ -56,13 +58,9 @@ export function Scene(props) {
 
   return (
     <div class={"tracklist"} id={sceneName}>
-      <h2>{sceneName}</h2>
-      <button type="button" onClick={pauseScene}>
-        Pause Scene
-      </button>
-      <button type="button" onClick={playScene}>
-        Play Scene
-      </button>
+      <h4>{sceneName}</h4>
+      <FontAwesomeIcon icon={faPause} onClick={pauseScene} style={{margin: "0 5px"}}/>
+      <FontAwesomeIcon icon={faPlay} onClick={playScene} style={{margin: "0 5px"}}/>
       <label for="trackId">Track Id:</label>
       <br></br>
       <input type="text" id="trackId" name="trackId"></input>
