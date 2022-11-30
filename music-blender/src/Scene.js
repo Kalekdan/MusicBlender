@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Track from "./Track";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faCoffee, faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
 
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
