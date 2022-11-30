@@ -22,7 +22,7 @@ export function ContinuousSlider(props) {
 }  ;
 
   return (
-    <Box sx={{ width: 200 }}>
+    <Box style={{margin:"auto"}} sx={{ width: 200 }}>
       <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
         <Slider aria-label="Volume" value={value} onChange={handleChange} />
       </Stack>

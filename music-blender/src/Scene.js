@@ -7,8 +7,8 @@ export function Scene(props) {
   const [tracks, setTracks] = useState([]);
   const sceneName = props.sceneName;
   const handleClick = () => {
-    let tId = document.getElementById("trackId").value;
-    let tName = document.getElementById("trackName").value;
+    let tId = document.getElementById(sceneName).querySelectorAll("#trackId")[0].value;
+    let tName = document.getElementById(sceneName).querySelectorAll("#trackName")[0].value;
     // implementation details
     setTracks((tracks) => [
       ...tracks,
@@ -58,7 +58,7 @@ export function Scene(props) {
 
   return (
     <div class={"tracklist"} id={sceneName}>
-      <h4>{sceneName}</h4>
+      <h4 class={"sceneHeader"}>{sceneName}</h4>
       <FontAwesomeIcon icon={faPause} onClick={pauseScene} style={{margin: "0 5px"}}/>
       <FontAwesomeIcon icon={faPlay} onClick={playScene} style={{margin: "0 5px"}}/>
       <label for="trackId">Track Id:</label>

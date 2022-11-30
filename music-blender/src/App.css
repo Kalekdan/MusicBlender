@@ -2,8 +2,6 @@
   text-align: center;
 }
 
-
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -15,11 +13,11 @@
   color: white;
 }
 
-#scenes{
+.scenes {
   display: flex;
 }
 
-#scene{
+.scene {
   border-style: solid;
   border-color: #61dafb;
   border-radius: 25px;
@@ -29,14 +27,18 @@
   padding-right: 5px;
 }
 
-/* #tracklist {
+.tracklist {
 }
 
-#track {
-} */
+.track {
+}
 
-iframe{
-  display:block;
+.sceneHeader {
+  margin: 2%;
+}
+
+iframe {
+  display: block;
 }
 
 .App-link {
