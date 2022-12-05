@@ -4,14 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPause,
   faPlay,
-  faPlayCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
   const sceneName = props.sceneName;
   const regex =
-    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+    /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/i;
 
   const handleClick = () => {
     let tURL = document
