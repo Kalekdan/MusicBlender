@@ -6,8 +6,11 @@ import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
   const sceneName = props.sceneName;
+  const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+
   const handleClick = () => {
-    let tId = document.getElementById(sceneName).querySelectorAll("#trackId")[0].value;
+    let tURL = document.getElementById(sceneName).querySelectorAll("#trackURL")[0].value;
+    let tId = tURL.match(regex)[1];
     let tName = document.getElementById(sceneName).querySelectorAll("#trackName")[0].value;
     // implementation details
     setTracks((tracks) => [
@@ -61,9 +64,9 @@ export function Scene(props) {
       <h4 class={"sceneHeader"}>{sceneName}</h4>
       <FontAwesomeIcon icon={faPause} onClick={pauseScene} style={{margin: "0 5px"}}/>
       <FontAwesomeIcon icon={faPlay} onClick={playScene} style={{margin: "0 5px"}}/>
-      <label for="trackId">Track Id:</label>
+      <label for="trackURL">Track URL:</label>
       <br></br>
-      <input type="text" id="trackId" name="trackId"></input>
+      <input type="text" id="trackURL" name="trackURL"></input>
       <br></br>
       <label for="trackName">Track Name:</label>
       <br></br>

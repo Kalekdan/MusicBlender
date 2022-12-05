@@ -32,7 +32,8 @@ class Track extends React.PureComponent {
         'controls': 0, // hides player controls
         'disablekb': 1, // disables keyboard input
         'fs': 0, // prevents fullscreen
-        'loop':1 // loops video
+        'loop':1, // loops video
+        'start':0 // plays from the start
       },
       events: {
         onReady: this.onPlayerReady,
