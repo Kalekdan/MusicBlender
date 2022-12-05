@@ -29,6 +29,7 @@ export function Scene(props) {
   };
 
   const pauseScene = () => {
+    // fadeOutScene();
     let iframes = document
       .getElementById(sceneName)
       .querySelectorAll(".ytFrame");
@@ -121,19 +122,22 @@ export function Scene(props) {
     console.log("Fading in scene: " + scene);
     const fadingInterval = setInterval(fadeInInterval, 20); // set up an interval to call the fadein method every 20ms
     function fadeInInterval() {
-      let allAtHalf = true;
+      let allAtTarget = true;
       let trackArr = document.getElementById(scene).querySelectorAll(".track");
       // For each track in the scene
       trackArr.forEach((track) => {
         let currentVol = track
           .querySelectorAll(".MuiSlider-thumb")[0]
           .childNodes[0].getAttribute("value");
+        let targetVol = track
+        .querySelectorAll(".MuiSlider-thumb")[0]
+        .childNodes[0].getAttribute("aria-valuenow");
         console.log(currentVol);
         let newVol = parseInt(currentVol) + 1;
-        if(newVol > 50){
-          newVol = 50;
+        if(newVol > targetVol){
+          newVol = targetVol;
         } else {
-          allAtHalf = false;
+          allAtTarget = false;
         }
         // update value in slider
         track
@@ -153,7 +157,7 @@ export function Scene(props) {
           );
         }
       });
-      if (allAtHalf) {
+      if (allAtTarget) {
         clearInterval(fadingInterval);
       }
     }
