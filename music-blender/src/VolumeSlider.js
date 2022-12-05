@@ -19,7 +19,7 @@ export function ContinuousSlider(props) {
           'args': args || []
       } ), '*');
   }
-}  ;
+};
 
   return (
     <Box style={{margin:"auto"}} sx={{ width: 200 }}>
