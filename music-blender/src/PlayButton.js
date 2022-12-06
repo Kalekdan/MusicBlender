@@ -1,10 +1,17 @@
 import { Scene } from "./Scene";
 
-export function PlayButton({scenes, setScenes}) {
-  const handleClick = () => {
+export function PlayButton({ scenes, setScenes }) {
+  const handleSubmit = (event) => {
+    // prevent the form reloading the page
+    event.preventDefault();
     // implementation details
     let scName = document.getElementById("sceneName").value;
-    setScenes((scenes) => [...scenes, <Scene sceneName={scName}/>]);
+    if (scName === "") {
+      alert("Scene Name must be provided");
+      return;
+    }
+    document.getElementById("sceneName").value = "";
+    setScenes((scenes) => [...scenes, <Scene sceneName={scName} />]);
   };
 
   //Load yt api script before creating tracks
@@ -15,14 +22,14 @@ export function PlayButton({scenes, setScenes}) {
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label for="sceneName">Scene Name:</label>
         <br></br>
         <input type="text" id="sceneName" name="sceneName"></input>
+        <button id="createSceneButton" type="submit">
+          Create Scene
+        </button>
       </form>
-      <button id="createSceneButton" type="button" onClick={handleClick}>
-        Create Scene
-      </button>
       <div class={"scenes"}>
         {scenes.map((item, i) => (
           <div class={"scene"} key={i}>

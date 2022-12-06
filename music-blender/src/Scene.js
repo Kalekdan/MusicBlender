@@ -1,33 +1,44 @@
 import Track from "./Track";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPause,
-  faPlay,
-} from "@fortawesome/free-solid-svg-icons";
-import React, { useState, useEffect } from 'react';
-
+import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from "react";
 
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
   const sceneName = props.sceneName;
   const regex =
     /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/i;
-  
+
   // When tracks are provided, add to scene
   useEffect(() => {
-    if (props.tracks != null){
+    if (props.tracks != null) {
       setTracks(props.tracks);
     }
-  }, [props.tracks])
-   
-  const handleClick = () => {
+  }, [props.tracks]);
+
+  const handleSubmit = (event) => {
+    // prevent the form reloading the page
+    event.preventDefault();
     let tURL = document
       .getElementById(sceneName)
       .querySelectorAll("#trackURL")[0].value;
+    console.log(tURL);
+    if (tURL === "") {
+      alert("Track URL must be provided");
+      return;
+    }
+    document.getElementById(sceneName).querySelectorAll("#trackURL")[0].value =
+      "";
     let tId = tURL.match(regex)[1];
     let tName = document
       .getElementById(sceneName)
       .querySelectorAll("#trackName")[0].value;
+    if (tName === "") {
+      alert("Track Name must be provided");
+      return;
+    }
+    document.getElementById(sceneName).querySelectorAll("#trackName")[0].value =
+      "";
     // implementation details
     setTracks((tracks) => [
       ...tracks,
@@ -137,11 +148,11 @@ export function Scene(props) {
           .querySelectorAll(".MuiSlider-thumb")[0]
           .childNodes[0].getAttribute("value");
         let targetVol = track
-        .querySelectorAll(".MuiSlider-thumb")[0]
-        .childNodes[0].getAttribute("aria-valuenow");
+          .querySelectorAll(".MuiSlider-thumb")[0]
+          .childNodes[0].getAttribute("aria-valuenow");
         console.log(currentVol);
         let newVol = parseInt(currentVol) + 1;
-        if(newVol > targetVol){
+        if (newVol > targetVol) {
           newVol = targetVol;
         } else {
           allAtTarget = false;
@@ -183,16 +194,16 @@ export function Scene(props) {
         onClick={playScene}
         style={{ margin: "0 5px" }}
       />
-      <label for="trackURL">Track URL:</label>
-      <br></br>
-      <input type="text" id="trackURL" name="trackURL"></input>
-      <br></br>
-      <label for="trackName">Track Name:</label>
-      <br></br>
-      <input type="text" id="trackName" name="trackName"></input>
-      <button type="button" onClick={handleClick}>
-        Add Tracks
-      </button>
+      <form onSubmit={handleSubmit}>
+        <label for="trackURL">Track URL:</label>
+        <br></br>
+        <input type="text" id="trackURL" name="trackURL"></input>
+        <br></br>
+        <label for="trackName">Track Name:</label>
+        <br></br>
+        <input type="text" id="trackName" name="trackName"></input>
+        <button type="submit">Add Tracks</button>
+      </form>
       {tracks.map((item, i) => (
         <div class={"track"} key={i}>
           {item}
