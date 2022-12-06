@@ -16,9 +16,7 @@ export function ExportButton() {
           tempTracks.push({trackId, trackAlias, trackVolume});
         });
         scenes.push({sceneName, tempTracks});
-        // console.log(tempTracks[0]);
     });
-    console.log(scenes);
     jsonToFile(scenes);
   };
 
