@@ -2,7 +2,7 @@ import { Scene } from "./Scene";
 import Track from "./Track";
 import React, { useState } from "react";
 
-export function LoadButton({scenes, setScenes}) {
+export function LoadButton({ scenes, setScenes }) {
   const tempFile = {
     scenes: [
       {
@@ -11,12 +11,12 @@ export function LoadButton({scenes, setScenes}) {
           {
             trackId: "7T3SU4Ht1Yw",
             trackAlias: "Calm Music",
-            trackVol: 30,
+            trackVol: 10,
           },
           {
             trackId: "gaGrHUekGrc",
             trackAlias: "Cafe Ambience",
-            trackVol: 55,
+            trackVol: 15,
           },
         ],
       },
@@ -26,7 +26,7 @@ export function LoadButton({scenes, setScenes}) {
           {
             trackId: "5-UWXylsgag",
             trackAlias: "Insect Noises",
-            trackVol: 45,
+            trackVol: 15,
           },
         ],
       },
@@ -40,9 +40,18 @@ export function LoadButton({scenes, setScenes}) {
   const buildHTML = () => {
     // Clear existing scenes
     // setScenes((scenes) => [])
-    let newScenes = []
+    let newScenes = [];
     tempFile.scenes.forEach((scene) => {
-        newScenes.push(<Scene sceneName={scene.sceneName}/>);
+      let newTracks = [];
+      scene.tracks.forEach((track) => {
+        newTracks.push(<Track id={track.trackId} name={track.trackAlias} scene={scene.sceneName}/>)
+      });
+      newScenes.push(
+        <Scene
+          sceneName={scene.sceneName}
+          tracks={newTracks}
+        />
+      );
     });
     // setScenes((scenes) => [...scenes, <Scene sceneName={scene.sceneName}/>])
     setScenes(newScenes);

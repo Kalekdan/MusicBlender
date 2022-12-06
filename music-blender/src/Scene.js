@@ -1,17 +1,25 @@
-import React, { useState } from "react";
 import Track from "./Track";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPause,
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from 'react';
+
 
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
   const sceneName = props.sceneName;
   const regex =
     /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/i;
-
+  
+  // When tracks are provided, add to scene
+  useEffect(() => {
+    if (props.tracks != null){
+      setTracks(props.tracks);
+    }
+  }, [props.tracks])
+   
   const handleClick = () => {
     let tURL = document
       .getElementById(sceneName)

@@ -9,6 +9,7 @@ class Track extends React.PureComponent {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     scene: PropTypes.string.isRequired,
+    volume: PropTypes.number
   };
   elem_id = this.props.id + "-" + this.props.scene; //make this unique to allow multiple concurrent
 
