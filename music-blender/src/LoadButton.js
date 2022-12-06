@@ -1,6 +1,6 @@
 import { Scene } from "./Scene";
 import Track from "./Track";
-import React, { useState } from "react";
+import React from "react";
 
 export function LoadButton({ scenes, setScenes }) {
   const tempFile = {
