@@ -1,8 +1,6 @@
-import React, { useState } from "react";
 import { Scene } from "./Scene";
 
-export function PlayButton() {
-  const [scenes, setScenes] = useState([]);
+export function PlayButton({scenes, setScenes}) {
   const handleClick = () => {
     // implementation details
     let scName = document.getElementById("sceneName").value;
@@ -22,7 +20,7 @@ export function PlayButton() {
         <br></br>
         <input type="text" id="sceneName" name="sceneName"></input>
       </form>
-      <button type="button" onClick={handleClick}>
+      <button id="createSceneButton" type="button" onClick={handleClick}>
         Create Scene
       </button>
       <div class={"scenes"}>
