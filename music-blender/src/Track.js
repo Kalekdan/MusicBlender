@@ -43,7 +43,7 @@ class Track extends React.PureComponent {
   };
 
   onPlayerReady = (event) => {
-    event.target.playVideo();
+    //event.target.playVideo();
     // console.log(event.target);
   };
 
