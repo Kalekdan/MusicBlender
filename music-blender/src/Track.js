@@ -15,9 +15,6 @@ class Track extends React.PureComponent {
   componentDidMount = () => {
     // If script is already there, load the video directly
     this.loadVideo();
-    // console.log("already loaded");
-    // console.log("componentDidMount");
-    // console.log(window.YT);
   };
 
   loadVideo = () => {

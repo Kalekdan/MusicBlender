@@ -30,7 +30,7 @@
 
 .scene {
   margin: 0.2%;
-  padding: 0%
+  padding: 0%;
 }
 
 .scene {
@@ -42,7 +42,6 @@
   padding-left: 0px;
   padding-right: 0px;
 }
-
 
 .trackName {
   font-size: medium;
@@ -94,10 +93,20 @@ label {
   font-size: small;
 }
 
-.infoAlert{
+.infoAlert {
   position: absolute;
   left: 0;
   right: 0;
   margin: 0 auto;
-  width:fit-content
+  width: fit-content;
+}
+
+.footerdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-play:active, .fa-pause:active{
+ color: gray;
 }

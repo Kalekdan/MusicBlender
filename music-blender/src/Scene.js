@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
   const sceneName = props.sceneName;
+  const playingColor = "#1d9500";
+  const defaultColor = "#61dafb";
   const regex =
     /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/i;
 
@@ -47,7 +49,7 @@ export function Scene(props) {
   };
 
   const pauseScene = () => {
-    // fadeOutScene();
+    setOutlineColor(sceneName, defaultColor);
     let iframes = document
       .getElementById(sceneName)
       .querySelectorAll(".ytFrame");
@@ -68,6 +70,7 @@ export function Scene(props) {
   };
 
   const playScene = () => {
+    setOutlineColor(sceneName, playingColor);
     let iframes = document
       .getElementById(sceneName)
       .querySelectorAll(".ytFrame");
@@ -98,7 +101,7 @@ export function Scene(props) {
   };
 
   const fadeOutScene = (scene = sceneName) => {
-    console.log("Fading out scene: " + scene);
+    setOutlineColor(scene, defaultColor);
     const fadingInterval = setInterval(fadeOutInterval, 20); // set up an interval to call the fadeout method every 20ms
     function fadeOutInterval() {
       let allQuiet = true;
@@ -137,9 +140,9 @@ export function Scene(props) {
   };
 
   const fadeInScene = (scene = sceneName) => {
-    console.log("Fading in scene: " + scene);
     const fadingInterval = setInterval(fadeInInterval, 20); // set up an interval to call the fadein method every 20ms
     function fadeInInterval() {
+      setOutlineColor(scene, playingColor);
       let allAtTarget = true;
       let trackArr = document.getElementById(scene).querySelectorAll(".track");
       // For each track in the scene
@@ -180,6 +183,11 @@ export function Scene(props) {
     }
   };
 
+  const setOutlineColor = (sceneName, color) => {
+    let sceneElement = document.getElementById(sceneName).parentElement;
+    sceneElement.setAttribute("style", "border-color:" + color + ";");
+  };
+
   return (
     <div class={"tracklist"} id={sceneName}>
       <div class={"sceneHeader"}>
@@ -197,11 +205,23 @@ export function Scene(props) {
       </div>
       <form onSubmit={handleSubmit}>
         <label for="trackURL">Track URL: </label>
-        <input type="text" id="trackURL" name="trackURL" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"></input>
+        <input
+          type="text"
+          id="trackURL"
+          name="trackURL"
+          placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        ></input>
         <br></br>
         <label for="trackName">Track Name: </label>
-        <input type="text" id="trackName" name="trackName" placeholder="e.g. Forest Ambience"></input>
-        <Button variant="contained" type="submit">Add Tracks</Button>
+        <input
+          type="text"
+          id="trackName"
+          name="trackName"
+          placeholder="e.g. Forest Ambience"
+        ></input>
+        <Button variant="contained" type="submit">
+          Add Tracks
+        </Button>
       </form>
       {tracks.map((item, i) => (
         <div class={"track"} key={i}>
