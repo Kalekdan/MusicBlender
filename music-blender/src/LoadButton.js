@@ -1,9 +1,10 @@
 import { Scene } from "./Scene";
 import Track from "./Track";
-import React from "react";
+import React, { useState } from "react";
 
 export function LoadButton({ scenes, setScenes }) {
-  const tempFile = {
+  const [file, setFile] = useState();
+  const exampleFile = {
     scenes: [
       {
         sceneName: "Shop",
@@ -33,35 +34,56 @@ export function LoadButton({ scenes, setScenes }) {
     ],
   };
 
-  const handleClick = () => {
-    buildHTML();
+  const handleFileChange = (event) => {
+    const fileInput = document.querySelector('input[type=file]');
+    setFile(fileInput.files[0]);
   };
 
-  const buildHTML = () => {
+  function readFile(file) {                                                       
+    var reader = new FileReader();
+    reader.onload = readSuccess;                                            
+    function readSuccess(evt) {     
+        buildHTML(JSON.parse(evt.target.result));                                                   
+    };
+    reader.readAsText(file);        
+}
+
+  const handleClick = (event) => {
+    if (file){
+      readFile(file);
+    } else {
+      buildHTML(exampleFile);
+    }
+  };
+
+  const buildHTML = (inputFile) => {
     // Clear existing scenes
     // setScenes((scenes) => [])
     let newScenes = [];
-    tempFile.scenes.forEach((scene) => {
+    inputFile.scenes.forEach((scene) => {
       let newTracks = [];
       scene.tracks.forEach((track) => {
-        newTracks.push(<Track id={track.trackId} name={track.trackAlias} scene={scene.sceneName}/>)
+        newTracks.push(
+          <Track
+            id={track.trackId}
+            name={track.trackAlias}
+            scene={scene.sceneName}
+          />
+        );
       });
-      newScenes.push(
-        <Scene
-          sceneName={scene.sceneName}
-          tracks={newTracks}
-        />
-      );
+      newScenes.push(<Scene sceneName={scene.sceneName} tracks={newTracks} />);
     });
-    // setScenes((scenes) => [...scenes, <Scene sceneName={scene.sceneName}/>])
     setScenes(newScenes);
   };
 
   return (
     <div>
-      <button type="button" onClick={handleClick}>
-        Load Scenes
-      </button>
+      <form>
+        <input type="file" onChange={handleFileChange} />
+        <button type="button" onClick={handleClick}>
+          Load Scenes
+        </button>
+      </form>
     </div>
   );
 }

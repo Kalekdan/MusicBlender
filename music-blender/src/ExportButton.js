@@ -4,7 +4,7 @@ export function ExportButton() {
     let tempScenes = document.querySelectorAll(".tracklist");
     tempScenes.forEach((tempScene) => {
       let sceneName = tempScene.getAttribute("id");
-      let tempTracks = []
+      let tracks = []
       let trackElements = document
         .getElementById(sceneName)
         .querySelectorAll(".track");
@@ -13,11 +13,11 @@ export function ExportButton() {
           let trackAlias = element.querySelectorAll('p')[0].innerHTML;
           let trackVolume = element.querySelectorAll(".MuiSlider-thumb")[0]
           .childNodes[0].getAttribute("aria-valuenow");
-          tempTracks.push({trackId, trackAlias, trackVolume});
+          tracks.push({trackId, trackAlias, trackVolume});
         });
-        scenes.push({sceneName, tempTracks});
+        scenes.push({sceneName, tracks});
     });
-    jsonToFile(scenes);
+    jsonToFile({'scenes':scenes});
   };
 
   const jsonToFile = (payload) => {
