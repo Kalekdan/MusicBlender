@@ -1,6 +1,8 @@
 import { Scene } from "./Scene";
 import Track from "./Track";
 import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 export function LoadButton({ scenes, setScenes }) {
   const [file, setFile] = useState();
@@ -35,25 +37,22 @@ export function LoadButton({ scenes, setScenes }) {
   };
 
   const handleFileChange = (event) => {
-    const fileInput = document.querySelector('input[type=file]');
+    const fileInput = document.querySelector("input[type=file]");
     setFile(fileInput.files[0]);
+    readFile(file);
   };
 
-  function readFile(file) {                                                       
+  function readFile(file) {
     var reader = new FileReader();
-    reader.onload = readSuccess;                                            
-    function readSuccess(evt) {     
-        buildHTML(JSON.parse(evt.target.result));                                                   
-    };
-    reader.readAsText(file);        
-}
+    reader.onload = readSuccess;
+    function readSuccess(evt) {
+      buildHTML(JSON.parse(evt.target.result));
+    }
+    reader.readAsText(file);
+  }
 
   const handleClick = (event) => {
-    if (file){
-      readFile(file);
-    } else {
-      buildHTML(exampleFile);
-    }
+    buildHTML(exampleFile);
   };
 
   const buildHTML = (inputFile) => {
@@ -79,10 +78,22 @@ export function LoadButton({ scenes, setScenes }) {
   return (
     <div>
       <form>
-        <input type="file" onChange={handleFileChange} />
-        <button type="button" onClick={handleClick}>
-          Load Scenes
-        </button>
+        <Button
+          variant="contained"
+          component="label"
+          startIcon={<UploadFileIcon />}
+        >
+          Import File
+          <input
+            type="file"
+            accept=".json"
+            hidden
+            onChange={handleFileChange}
+          />
+        </Button>
+        <Button variant="contained" type="button" onClick={handleClick}>
+          Load Example
+        </Button>
       </form>
     </div>
   );

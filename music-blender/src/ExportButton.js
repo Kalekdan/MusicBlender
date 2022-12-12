@@ -1,3 +1,5 @@
+import Button from '@mui/material/Button';
+
 export function ExportButton() {
   const handleClick = () => {
     let scenes = [];
@@ -34,9 +36,9 @@ export function ExportButton() {
 
   return (
     <div>
-      <button type="button" onClick={handleClick}>
-        Export Scenes
-      </button>
+      <Button  variant='contained' type="button" onClick={handleClick}>
+        Export File
+      </Button>
     </div>
   );
 }

@@ -7,6 +7,13 @@
   justify-content: space-between;
 }
 
+.headerbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1%;
+}
+
 .App-header {
   /* background-color: #282c34; */
   /* min-height: 100vh; */
@@ -48,4 +55,8 @@ iframe {
 
 .App-link {
   color: #61dafb;
+}
+
+.coffee_widget{
+  margin-bottom: 1%;
 }

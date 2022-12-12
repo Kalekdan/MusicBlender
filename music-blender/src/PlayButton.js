@@ -1,4 +1,5 @@
 import { Scene } from "./Scene";
+import Button from '@mui/material/Button';
 
 export function PlayButton({ scenes, setScenes }) {
   const handleSubmit = (event) => {
@@ -26,9 +27,9 @@ export function PlayButton({ scenes, setScenes }) {
         <label for="sceneName">Scene Name:</label>
         <br></br>
         <input type="text" id="sceneName" name="sceneName"></input>
-        <button id="createSceneButton" type="submit">
+        <Button variant='contained' id="createSceneButton" type="submit">
           Create Scene
-        </button>
+        </Button>
       </form>
       <div class={"scenes"}>
         {scenes.map((item, i) => (

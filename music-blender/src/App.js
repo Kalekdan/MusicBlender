@@ -10,9 +10,9 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <ExportButton></ExportButton>
+      <div class='headerbar'>
         <LoadButton scenes={scenes} setScenes={setScenes}></LoadButton>
+        <ExportButton></ExportButton>
       </div>
       <header className="App-header">
         <PlayButton scenes={scenes} setScenes={setScenes}></PlayButton>
