@@ -2,6 +2,7 @@ import Track from "./Track";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
 
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
@@ -181,26 +182,26 @@ export function Scene(props) {
 
   return (
     <div class={"tracklist"} id={sceneName}>
-      <h4 class={"sceneHeader"}>{sceneName}</h4>
-      <FontAwesomeIcon
-        icon={faPause}
-        onClick={pauseScene}
-        style={{ margin: "0 5px" }}
-      />
-      <FontAwesomeIcon
-        icon={faPlay}
-        onClick={playScene}
-        style={{ margin: "0 5px" }}
-      />
+      <div class={"sceneHeader"}>
+        <h4>{sceneName}</h4>
+        <FontAwesomeIcon
+          icon={faPause}
+          onClick={pauseScene}
+          style={{ margin: "0 5px" }}
+        />
+        <FontAwesomeIcon
+          icon={faPlay}
+          onClick={playScene}
+          style={{ margin: "0 5px" }}
+        />
+      </div>
       <form onSubmit={handleSubmit}>
-        <label for="trackURL">Track URL:</label>
+        <label for="trackURL">Track URL: </label>
+        <input type="text" id="trackURL" name="trackURL" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"></input>
         <br></br>
-        <input type="text" id="trackURL" name="trackURL"></input>
-        <br></br>
-        <label for="trackName">Track Name:</label>
-        <br></br>
-        <input type="text" id="trackName" name="trackName"></input>
-        <button type="submit">Add Tracks</button>
+        <label for="trackName">Track Name: </label>
+        <input type="text" id="trackName" name="trackName" placeholder="e.g. Forest Ambience"></input>
+        <Button variant="contained" type="submit">Add Tracks</Button>
       </form>
       {tracks.map((item, i) => (
         <div class={"track"} key={i}>

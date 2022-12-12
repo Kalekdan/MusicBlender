@@ -28,11 +28,11 @@ class Track extends React.PureComponent {
       width: "0",
       videoId: id,
       playerVars: {
-        'controls': 0, // hides player controls
-        'disablekb': 1, // disables keyboard input
-        'fs': 0, // prevents fullscreen
-        'loop':1, // loops video
-        'start':0 // plays from the start
+        controls: 0, // hides player controls
+        disablekb: 1, // disables keyboard input
+        fs: 0, // prevents fullscreen
+        loop: 1, // loops video
+        start: 0, // plays from the start
       },
       events: {
         onReady: this.onPlayerReady,
@@ -46,14 +46,24 @@ class Track extends React.PureComponent {
   };
 
   render = () => {
-    if (this.props.volume === undefined){
+    if (this.props.volume === undefined) {
       this.props.volume = 50;
     }
     return (
       <div>
-        <p>{this.props.name}</p>
-        <div id={this.elem_id} class={'ytFrame'}/>
-        <ContinuousSlider trackId={this.elem_id} volume={this.props.volume}></ContinuousSlider>
+        <a
+          class="trackName"
+          href={"https://www.youtube.com/watch?v=" + this.props.id}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <p>{this.props.name}</p>
+        </a>
+        <div id={this.elem_id} class={"ytFrame"} />
+        <ContinuousSlider
+          trackId={this.elem_id}
+          volume={this.props.volume}
+        ></ContinuousSlider>
       </div>
     );
   };

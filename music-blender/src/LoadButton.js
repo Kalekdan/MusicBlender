@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 
+
 export function LoadButton({ scenes, setScenes }) {
   const [file, setFile] = useState();
+
   const exampleFile = {
     scenes: [
       {
@@ -125,6 +127,7 @@ export function LoadButton({ scenes, setScenes }) {
         <Button variant="contained" type="button" onClick={handleClick}>
           Load Example
         </Button>
+
       </form>
     </div>
   );
