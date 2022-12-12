@@ -6,6 +6,8 @@ import React, { useState } from "react";
 import Coffee from "./Coffee";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 function App() {
   const [scenes, setScenes] = useState([]);
@@ -19,9 +21,8 @@ function App() {
           <ExportButton></ExportButton>
         </div>
         <div class={"infoAlert"}>
-          <Collapse  in={open}>
+          <Collapse in={open}>
             <Alert
-              
               severity="info"
               onClose={() => {
                 setInfoOpen(false);
@@ -35,7 +36,33 @@ function App() {
       <header className="App-header">
         <PlayButton scenes={scenes} setScenes={setScenes}></PlayButton>
       </header>
-      <Coffee></Coffee>
+      <div class={"footerdiv"}>
+        <a
+          href="https://github.com/Kalekdan/MusicBlender"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <GitHubIcon
+            fontSize={"large"}
+            sx={{
+              m: 1,
+            }}
+          ></GitHubIcon>
+        </a>
+        <a
+          href="https://twitter.com/JoeRickardDev"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <TwitterIcon
+            fontSize={"large"}
+            sx={{
+              m: 1,
+            }}
+          ></TwitterIcon>
+        </a>
+        <Coffee></Coffee>
+      </div>
     </div>
   );
 }
