@@ -69,13 +69,12 @@ p {
 }
 
 .coffee_widget {
-  margin-bottom: 1%;
+  /* margin-bottom: 1%; */
 }
 
 a:link,
 a:visited {
   color: white;
-  padding: 14px 25px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
