@@ -22,7 +22,6 @@ export function Scene(props) {
     let tURL = document
       .getElementById(sceneName)
       .querySelectorAll("#trackURL")[0].value;
-    console.log(tURL);
     if (tURL === "") {
       alert("Track URL must be provided");
       return;
@@ -150,7 +149,6 @@ export function Scene(props) {
         let targetVol = track
           .querySelectorAll(".MuiSlider-thumb")[0]
           .childNodes[0].getAttribute("aria-valuenow");
-        console.log(currentVol);
         let newVol = parseInt(currentVol) + 1;
         if (newVol > targetVol) {
           newVol = targetVol;

@@ -30,6 +30,10 @@
 }
 
 .scene {
+  margin: 1%;
+}
+
+.scene {
   border-style: solid;
   border-color: #61dafb;
   border-radius: 25px;

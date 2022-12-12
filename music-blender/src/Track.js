@@ -9,17 +9,15 @@ class Track extends React.PureComponent {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     scene: PropTypes.string.isRequired,
-    volume: PropTypes.number
+    volume: PropTypes.number.isRequired,
   };
   elem_id = this.props.id + "-" + this.props.scene; //make this unique to allow multiple concurrent
-
   componentDidMount = () => {
     // If script is already there, load the video directly
     this.loadVideo();
-    console.log("already loaded");
-
-    console.log("componentDidMount");
-    console.log(window.YT);
+    // console.log("already loaded");
+    // console.log("componentDidMount");
+    // console.log(window.YT);
   };
 
   loadVideo = () => {
@@ -48,11 +46,14 @@ class Track extends React.PureComponent {
   };
 
   render = () => {
+    if (this.props.volume === undefined){
+      this.props.volume = 50;
+    }
     return (
       <div>
         <p>{this.props.name}</p>
         <div id={this.elem_id} class={'ytFrame'}/>
-        <ContinuousSlider trackId={this.elem_id}></ContinuousSlider>
+        <ContinuousSlider trackId={this.elem_id} volume={this.props.volume}></ContinuousSlider>
       </div>
     );
   };

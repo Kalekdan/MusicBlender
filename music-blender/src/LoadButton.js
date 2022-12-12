@@ -14,7 +14,7 @@ export function LoadButton({ scenes, setScenes }) {
           {
             trackId: "7T3SU4Ht1Yw",
             trackAlias: "Calm Music",
-            trackVol: 10,
+            trackVol: 40,
           },
           {
             trackId: "gaGrHUekGrc",
@@ -27,9 +27,39 @@ export function LoadButton({ scenes, setScenes }) {
         sceneName: "Exploration",
         tracks: [
           {
+            trackId: "bLZApMsorjA",
+            trackAlias: "Exploration Music",
+            trackVol: 45,
+          },
+          {
             trackId: "5-UWXylsgag",
             trackAlias: "Insect Noises",
             trackVol: 15,
+          },
+        ],
+      },
+      {
+        sceneName: "Combat",
+        tracks: [
+          {
+            trackId: "_YpKEpF0oxo",
+            trackAlias: "Duel Music",
+            trackVol: 65,
+          },
+          {
+            trackId: "oBsHWwmXbcM",
+            trackAlias: "Sword ambience",
+            trackVol: 10,
+          },
+        ],
+      },
+      {
+        sceneName: "City",
+        tracks: [
+          {
+            trackId: "ddMSMwKQkKI",
+            trackAlias: "Large City Music",
+            trackVol: 65,
           },
         ],
       },
@@ -67,6 +97,7 @@ export function LoadButton({ scenes, setScenes }) {
             id={track.trackId}
             name={track.trackAlias}
             scene={scene.sceneName}
+            volume={track.trackVol}
           />
         );
       });
