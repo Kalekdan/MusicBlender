@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 
-
 export function LoadButton({ scenes, setScenes }) {
   const [file, setFile] = useState();
 
@@ -112,6 +111,7 @@ export function LoadButton({ scenes, setScenes }) {
     <div>
       <form>
         <Button
+          sx={{ m: 1 }}
           variant="contained"
           component="label"
           startIcon={<UploadFileIcon />}
@@ -124,10 +124,14 @@ export function LoadButton({ scenes, setScenes }) {
             onChange={handleFileChange}
           />
         </Button>
-        <Button variant="contained" type="button" onClick={handleClick}>
+        <Button
+          sx={{ m: 1 }}
+          variant="contained"
+          type="button"
+          onClick={handleClick}
+        >
           Load Example
         </Button>
-
       </form>
     </div>
   );

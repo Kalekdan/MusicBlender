@@ -24,9 +24,9 @@ export function PlayButton({ scenes, setScenes }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label for="sceneName">Scene Name:</label>
-        <br></br>
+        <label for="sceneName">Scene Name: </label>
         <input type="text" id="sceneName" name="sceneName" placeholder="e.g Jungle Exploration"></input>
+        <br></br>
         <Button variant='contained' id="createSceneButton" type="submit">
           Create Scene
         </Button>
