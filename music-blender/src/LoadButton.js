@@ -5,8 +5,6 @@ import Button from "@mui/material/Button";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 export function LoadButton({ scenes, setScenes }) {
-  const [file, setFile] = useState();
-
   const exampleFile = {
     scenes: [
       {
@@ -15,12 +13,12 @@ export function LoadButton({ scenes, setScenes }) {
           {
             trackId: "7T3SU4Ht1Yw",
             trackAlias: "Calm Music",
-            trackVol: 40,
+            trackVolume: 40,
           },
           {
             trackId: "gaGrHUekGrc",
             trackAlias: "Cafe Ambience",
-            trackVol: 15,
+            trackVolume: 15,
           },
         ],
       },
@@ -30,12 +28,12 @@ export function LoadButton({ scenes, setScenes }) {
           {
             trackId: "bLZApMsorjA",
             trackAlias: "Exploration Music",
-            trackVol: 45,
+            trackVolume: 45,
           },
           {
             trackId: "5-UWXylsgag",
             trackAlias: "Insect Noises",
-            trackVol: 15,
+            trackVolume: 15,
           },
         ],
       },
@@ -45,12 +43,12 @@ export function LoadButton({ scenes, setScenes }) {
           {
             trackId: "_YpKEpF0oxo",
             trackAlias: "Duel Music",
-            trackVol: 65,
+            trackVolume: 65,
           },
           {
             trackId: "oBsHWwmXbcM",
             trackAlias: "Sword ambience",
-            trackVol: 10,
+            trackVolume: 10,
           },
         ],
       },
@@ -60,7 +58,7 @@ export function LoadButton({ scenes, setScenes }) {
           {
             trackId: "ddMSMwKQkKI",
             trackAlias: "Large City Music",
-            trackVol: 65,
+            trackVolume: 65,
           },
         ],
       },
@@ -69,8 +67,8 @@ export function LoadButton({ scenes, setScenes }) {
 
   const handleFileChange = (event) => {
     const fileInput = document.querySelector("input[type=file]");
-    setFile(fileInput.files[0]);
-    readFile(file);
+    let currentFile = fileInput.files[0];
+    readFile(currentFile);
   };
 
   function readFile(file) {
@@ -98,7 +96,7 @@ export function LoadButton({ scenes, setScenes }) {
             id={track.trackId}
             name={track.trackAlias}
             scene={scene.sceneName}
-            volume={track.trackVol}
+            volume={track.trackVolume}
           />
         );
       });

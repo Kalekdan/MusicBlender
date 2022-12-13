@@ -28,6 +28,8 @@
   display: flex;
   width: 80vw;
   overflow-x: auto;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .scene {
