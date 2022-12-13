@@ -1,6 +1,6 @@
 import { Scene } from "./Scene";
 import Track from "./Track";
-import React, { useState } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 
