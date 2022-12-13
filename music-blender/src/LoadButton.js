@@ -69,6 +69,7 @@ export function LoadButton({ scenes, setScenes }) {
     const fileInput = document.querySelector("input[type=file]");
     let currentFile = fileInput.files[0];
     readFile(currentFile);
+    event.target.value = null;
   };
 
   function readFile(file) {

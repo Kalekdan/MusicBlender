@@ -1,5 +1,6 @@
 import { Scene } from "./Scene";
 import Button from '@mui/material/Button';
+import { v4 as uuidv4 } from 'uuid';
 
 export function PlayButton({ scenes, setScenes }) {
   const handleSubmit = (event) => {
@@ -33,7 +34,7 @@ export function PlayButton({ scenes, setScenes }) {
       </form>
       <div class={"scenes"}>
         {scenes.map((item, i) => (
-          <div class={"scene"} key={i}>
+          <div class={"scene"} key={uuidv4()}>
             {item}
           </div>
         ))}

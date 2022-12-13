@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
+import { v4 as uuidv4 } from 'uuid';
 
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
@@ -224,7 +225,7 @@ export function Scene(props) {
         </Button>
       </form>
       {tracks.map((item, i) => (
-        <div class={"track"} key={i}>
+        <div class={"track"} key={uuidv4()}>
           {item}
         </div>
       ))}
