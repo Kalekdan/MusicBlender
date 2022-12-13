@@ -26,6 +26,8 @@
 
 .scenes {
   display: flex;
+  width: 80vw;
+  overflow-x: auto;
 }
 
 .scene {
@@ -107,6 +109,7 @@ label {
   align-items: center;
 }
 
-.fa-play:active, .fa-pause:active{
- color: gray;
+.fa-play:active,
+.fa-pause:active {
+  color: gray;
 }
