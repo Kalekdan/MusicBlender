@@ -49,10 +49,14 @@ export function Scene(props) {
     ]);
   };
 
-  const pauseScene = () => {
-    setOutlineColor(sceneName, defaultColor);
+  const pauseScene = (scene) => {
+    if (scene instanceof Object){
+      scene = sceneName;
+    }
+    console.log('pausing ' + scene);
+    setOutlineColor(scene, defaultColor);
     let iframes = document
-      .getElementById(sceneName)
+      .getElementById(scene)
       .querySelectorAll(".ytFrame");
     let func = "pauseVideo";
     let args = [];
@@ -70,10 +74,13 @@ export function Scene(props) {
     });
   };
 
-  const playScene = () => {
-    setOutlineColor(sceneName, playingColor);
+  const playScene = (scene) => {
+    if (scene instanceof Object){
+      scene = sceneName;
+    }
+    setOutlineColor(scene, playingColor);
     let iframes = document
-      .getElementById(sceneName)
+      .getElementById(scene)
       .querySelectorAll(".ytFrame");
     let func = "playVideo";
     let args = [];
@@ -93,7 +100,7 @@ export function Scene(props) {
       // Get scenes
       let scenesArr = document.querySelectorAll(".tracklist");
       let scenesSubArr = Array.from(scenesArr).filter(function (x) {
-        return x.getAttribute("id") !== sceneName;
+        return x.getAttribute("id") !== scene;
       });
       scenesSubArr.forEach((element) => {
         fadeOutScene(element.getAttribute("id"));
@@ -136,6 +143,7 @@ export function Scene(props) {
       });
       if (allQuiet) {
         clearInterval(fadingInterval);
+        pauseScene(scene);
       }
     }
   };

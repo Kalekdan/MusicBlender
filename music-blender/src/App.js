@@ -49,6 +49,7 @@ function App() {
             }}
           ></GitHubIcon>
         </a>
+        <Coffee></Coffee>
         <a
           href="https://twitter.com/JoeRickardDev"
           target="_blank"
@@ -61,7 +62,6 @@ function App() {
             }}
           ></TwitterIcon>
         </a>
-        <Coffee></Coffee>
       </div>
     </div>
   );
