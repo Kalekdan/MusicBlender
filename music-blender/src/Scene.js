@@ -45,7 +45,7 @@ export function Scene(props) {
     // implementation details
     setTracks((tracks) => [
       ...tracks,
-      <Track id={tId} name={tName} scene={sceneName} />,
+      <Track id={tId} name={tName} scene={sceneName} volume={50}/>,
     ]);
   };
 

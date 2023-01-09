@@ -30,6 +30,7 @@ class Track extends React.PureComponent {
         fs: 0, // prevents fullscreen
         loop: 1, // loops video
         start: 0, // plays from the start
+        playlist: id,
       },
       events: {
         onReady: this.onPlayerReady,
