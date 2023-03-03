@@ -1,6 +1,5 @@
 import { Scene } from "./Scene";
 import Button from '@mui/material/Button';
-import { v4 as uuidv4 } from 'uuid';
 
 export function PlayButton({ scenes, setScenes }) {
   const handleSubmit = (event) => {
@@ -13,7 +12,7 @@ export function PlayButton({ scenes, setScenes }) {
       return;
     }
     document.getElementById("sceneName").value = "";
-    setScenes((scenes) => [...scenes, <Scene sceneName={scName} />]);
+    setScenes((scenes) => [...scenes, <Scene sceneName={scName} setScenes={setScenes}/>]);
   };
 
   //Load yt api script before creating tracks
@@ -34,7 +33,7 @@ export function PlayButton({ scenes, setScenes }) {
       </form>
       <div class={"scenes"}>
         {scenes.map((item, i) => (
-          <div class={"scene"} key={uuidv4()}>
+          <div class={"scene"} key={i}>
             {item}
           </div>
         ))}

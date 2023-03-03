@@ -101,7 +101,7 @@ export function LoadButton({ scenes, setScenes }) {
           />
         );
       });
-      newScenes.push(<Scene sceneName={scene.sceneName} tracks={newTracks} />);
+      newScenes.push(<Scene sceneName={scene.sceneName} tracks={newTracks} setScenes={setScenes}/>);
     });
     setScenes(newScenes);
   };

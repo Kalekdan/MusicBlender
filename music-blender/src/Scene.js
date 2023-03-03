@@ -4,7 +4,6 @@ import { faPause, faPlay, faClose } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { v4 as uuidv4 } from "uuid";
-import { width } from "@mui/system";
 
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
@@ -195,7 +194,11 @@ export function Scene(props) {
   };
 
   function deleteScene() {
-    console.log("Not yet implemented");
+    console.log("Deleting: " + sceneName);
+    props.setScenes((current) =>
+      current.filter((x) => x.props.sceneName !== sceneName)
+    );
+    
     // let sceneElement = document.getElementById(sceneName).parentElement;
     // console.log(sceneElement);
     // sceneElement.remove();
