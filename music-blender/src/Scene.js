@@ -1,9 +1,10 @@
 import Track from "./Track";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faPause, faPlay, faClose } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
+import { width } from "@mui/system";
 
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
@@ -45,19 +46,17 @@ export function Scene(props) {
     // implementation details
     setTracks((tracks) => [
       ...tracks,
-      <Track id={tId} name={tName} scene={sceneName} volume={50}/>,
+      <Track id={tId} name={tName} scene={sceneName} volume={50} />,
     ]);
   };
 
   const pauseScene = (scene) => {
-    if (scene instanceof Object){
+    if (scene instanceof Object) {
       scene = sceneName;
     }
-    console.log('pausing ' + scene);
+    console.log("pausing " + scene);
     setOutlineColor(scene, defaultColor);
-    let iframes = document
-      .getElementById(scene)
-      .querySelectorAll(".ytFrame");
+    let iframes = document.getElementById(scene).querySelectorAll(".ytFrame");
     let func = "pauseVideo";
     let args = [];
     iframes.forEach((iframe) => {
@@ -75,13 +74,11 @@ export function Scene(props) {
   };
 
   const playScene = (scene) => {
-    if (scene instanceof Object){
+    if (scene instanceof Object) {
       scene = sceneName;
     }
     setOutlineColor(scene, playingColor);
-    let iframes = document
-      .getElementById(scene)
-      .querySelectorAll(".ytFrame");
+    let iframes = document.getElementById(scene).querySelectorAll(".ytFrame");
     let func = "playVideo";
     let args = [];
     iframes.forEach((iframe) => {
@@ -197,10 +194,25 @@ export function Scene(props) {
     sceneElement.setAttribute("style", "border-color:" + color + ";");
   };
 
+  function deleteScene() {
+    console.log("Not yet implemented");
+    // let sceneElement = document.getElementById(sceneName).parentElement;
+    // console.log(sceneElement);
+    // sceneElement.remove();
+  }
+
   return (
     <div class={"tracklist"} id={sceneName}>
       <div class={"sceneHeader"}>
-        <h4>{sceneName}</h4>
+        <div class={"sceneTitleBar"}>
+          <p style={{ margin: "0 10px" }}></p>
+          <h4>{sceneName}</h4>
+          <FontAwesomeIcon
+          icon={faClose}
+          onClick={deleteScene}
+          style={{ margin: "0 10px 0 0px", width: "20px" }}
+        />
+        </div>
         <FontAwesomeIcon
           icon={faPause}
           onClick={pauseScene}

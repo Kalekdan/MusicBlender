@@ -59,6 +59,11 @@
   padding: 0%;
 }
 
+.sceneTitleBar {
+  display: flex;
+  justify-content: space-between;
+}
+
 iframe {
   display: block;
 }
