@@ -33,6 +33,7 @@ function App() {
           </Collapse>
         </div>
       </div>
+      <img class={"logo"} src={require("./media/musicblenderlogo.png")} alt="Music Blender Logo"></img>
       <header className="App-header">
         <PlayButton scenes={scenes} setScenes={setScenes}></PlayButton>
       </header>

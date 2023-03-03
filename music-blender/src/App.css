@@ -1,10 +1,26 @@
+/* 
+#f0f1e4
+#aab9b0
+#a0a39e
+#978e8c
+#8e797b 
+*/
+
 .App {
   text-align: center;
-  background-color: #282c34;
+  background-color: #f0f1e4;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.logo {
+  position: absolute;
+  height: 10%;
+  align-self: center;
+  top: 20vh;
+  z-index: 0;
 }
 
 .headerbar {
@@ -21,7 +37,9 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #a0a39e;
+  z-index: 0;
+
 }
 
 .scenes {
@@ -39,12 +57,14 @@
 
 .scene {
   border-style: solid;
-  border-color: #61dafb;
+  border-color: #978e8c;
   border-radius: 25px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 0px;
   padding-right: 0px;
+  background-color: #f0f1e4;
+
 }
 
 .trackName {
@@ -82,7 +102,7 @@ p {
 
 a:link,
 a:visited {
-  color: white;
+  color: #8e797b;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -102,6 +122,10 @@ label {
   font-size: small;
 }
 
+form {
+  color: #8e797b;
+}
+
 .infoAlert {
   position: absolute;
   left: 0;
@@ -118,5 +142,5 @@ label {
 
 .fa-play:active,
 .fa-pause:active {
-  color: gray;
+  color: #8e797b;
 }

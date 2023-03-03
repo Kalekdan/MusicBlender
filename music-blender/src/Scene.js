@@ -9,7 +9,7 @@ export function Scene(props) {
   const [tracks, setTracks] = useState([]);
   const sceneName = props.sceneName;
   const playingColor = "#1d9500";
-  const defaultColor = "#61dafb";
+  const defaultColor = "#978e8c";
   const regex =
     /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/i;
 
