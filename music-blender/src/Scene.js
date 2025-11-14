@@ -14,6 +14,20 @@ export function Scene(props) {
   const regex =
     /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/i;
 
+  // Update parent div class when expanded state changes
+  useEffect(() => {
+    const sceneDiv = document.getElementById(sceneName)?.parentElement;
+    if (sceneDiv) {
+      if (isExpanded) {
+        sceneDiv.classList.remove('collapsed');
+        sceneDiv.classList.add('expanded');
+      } else {
+        sceneDiv.classList.remove('expanded');
+        sceneDiv.classList.add('collapsed');
+      }
+    }
+  }, [isExpanded, sceneName]);
+
   // When tracks are provided, add to scene
   useEffect(() => {
     if (props.tracks != null) {
@@ -236,35 +250,33 @@ export function Scene(props) {
           </div>
         </div>
       </div>
-      {isExpanded && (
-        <>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="trackURL">Track URL: </label>
-            <input
-              type="text"
-              id="trackURL"
-              name="trackURL"
-              placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            />
-            <br />
-            <label htmlFor="trackName">Track Name: </label>
-            <input
-              type="text"
-              id="trackName"
-              name="trackName"
-              placeholder="e.g. Forest Ambience"
-            />
-            <Button variant="contained" type="submit">
-              Add Tracks
-            </Button>
-          </form>
-          {tracks.map((item, i) => (
-            <div className={"track"} key={uuidv4()}>
-              {item}
-            </div>
-          ))}
-        </>
-      )}
+      <div style={{ display: isExpanded ? 'block' : 'none' }}>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="trackURL">Track URL: </label>
+          <input
+            type="text"
+            id="trackURL"
+            name="trackURL"
+            placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          />
+          <br />
+          <label htmlFor="trackName">Track Name: </label>
+          <input
+            type="text"
+            id="trackName"
+            name="trackName"
+            placeholder="e.g. Forest Ambience"
+          />
+          <Button variant="contained" type="submit">
+            Add Tracks
+          </Button>
+        </form>
+        {tracks.map((item, i) => (
+          <div className={"track"} key={uuidv4()}>
+            {item}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

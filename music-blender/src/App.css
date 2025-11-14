@@ -28,8 +28,8 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  padding: 15px 20px;
+  gap: 8px;
+  padding: 10px 20px;
   background-color: #aab9b0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -52,11 +52,13 @@
 .scenes {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-auto-rows: minmax(auto, max-content);
   width: 90vw;
   max-width: 1400px;
   margin: 0 auto;
   gap: 15px;
   justify-content: center;
+  align-items: start;
 }
 
 .scene {
@@ -82,8 +84,15 @@
   margin: 0;
   padding: 12px 15px;
   background-color: #aab9b0;
-  border-radius: 13px 13px 0 0;
   color: #f0f1e4;
+}
+
+.scene.expanded .sceneHeader {
+  border-radius: 13px 13px 0 0;
+}
+
+.scene.collapsed .sceneHeader {
+  border-radius: 13px;
 }
 
 .sceneTitleBar {
