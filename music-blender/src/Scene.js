@@ -250,7 +250,11 @@ export function Scene(props) {
           </div>
         </div>
       </div>
-      <div style={{ display: isExpanded ? 'block' : 'none' }}>
+      <div style={{ 
+        maxHeight: isExpanded ? '10000px' : '0',
+        overflow: 'hidden',
+        transition: 'max-height 0.3s ease-in-out'
+      }}>
         <form onSubmit={handleSubmit}>
           <label htmlFor="trackURL">Track URL: </label>
           <input
