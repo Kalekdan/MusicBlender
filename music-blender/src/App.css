@@ -28,7 +28,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  padding: 15px 20px;
+  background-color: #aab9b0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
 }
 
 .App-header {
@@ -202,6 +207,42 @@ form {
 
 .track:first-of-type {
   border-top: 1px solid #978e8c;
+}
+
+/* Custom button styling to match app theme */
+.MuiButton-root {
+  background-color: #978e8c !important;
+  color: #f0f1e4 !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.2s ease !important;
+}
+
+.MuiButton-root:hover {
+  background-color: #8e797b !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px);
+}
+
+.MuiButton-root:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Header buttons specifically */
+.headerbar .MuiButton-root {
+  background-color: #f0f1e4 !important;
+  color: #8e797b !important;
+  border: 2px solid #978e8c !important;
+}
+
+.headerbar .MuiButton-root:hover {
+  background-color: #978e8c !important;
+  color: #f0f1e4 !important;
+  border-color: #8e797b !important;
 }
 
 .infoAlert {
