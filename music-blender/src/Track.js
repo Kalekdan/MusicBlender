@@ -50,14 +50,14 @@ class Track extends React.PureComponent {
     return (
       <div>
         <a
-          class="trackName"
+          className="trackName"
           href={"https://www.youtube.com/watch?v=" + this.props.id}
           target="_blank"
           rel="noreferrer"
         >
           <p>{this.props.name}</p>
         </a>
-        <div id={this.elem_id} class={"ytFrame"} />
+        <div id={this.elem_id} className={"ytFrame"} />
         <ContinuousSlider
           trackId={this.elem_id}
           volume={this.props.volume}

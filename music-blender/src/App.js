@@ -16,11 +16,11 @@ function App() {
   return (
     <div className="App">
       <div>
-        <div class="headerbar">
+        <div className="headerbar">
           <LoadButton scenes={scenes} setScenes={setScenes}></LoadButton>
           <ExportButton></ExportButton>
         </div>
-        <div class={"infoAlert"}>
+        <div className={"infoAlert"}>
           <Collapse in={open}>
             <Alert
               severity="info"
@@ -33,11 +33,11 @@ function App() {
           </Collapse>
         </div>
       </div>
-      <img class={"logo"} src={require("./media/musicblenderlogo.png")} alt="Music Blender Logo"></img>
+      <img className={"logo"} src={require("./media/musicblenderlogo.png")} alt="Music Blender Logo" />
       <header className="App-header">
         <PlayButton scenes={scenes} setScenes={setScenes}></PlayButton>
       </header>
-      <div class={"footerdiv"}>
+      <div className={"footerdiv"}>
         <a
           href="https://github.com/Kalekdan/MusicBlender"
           target="_blank"

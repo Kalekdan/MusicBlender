@@ -24,16 +24,16 @@ export function PlayButton({ scenes, setScenes }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label for="sceneName">Scene Name: </label>
-        <input type="text" id="sceneName" name="sceneName" placeholder="e.g Jungle Exploration"></input>
-        <br></br>
+        <label htmlFor="sceneName">Scene Name: </label>
+        <input type="text" id="sceneName" name="sceneName" placeholder="e.g Jungle Exploration" />
+        <br />
         <Button variant='contained' id="createSceneButton" type="submit">
           Create Scene
         </Button>
       </form>
-      <div class={"scenes"}>
+      <div className={"scenes"}>
         {scenes.map((item, i) => (
-          <div class={"scene"} key={i}>
+          <div className={"scene"} key={i}>
             {item}
           </div>
         ))}

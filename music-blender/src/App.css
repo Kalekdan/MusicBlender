@@ -1,14 +1,15 @@
 /* 
-#f0f1e4
-#aab9b0
-#a0a39e
-#978e8c
-#8e797b 
+Color Palette:
+#2c3e50 - Dark blue-gray (primary)
+#34495e - Lighter blue-gray
+#3498db - Bright blue (accents)
+#ecf0f1 - Light gray (background)
+#95a5a6 - Medium gray (borders)
 */
 
 .App {
   text-align: center;
-  background-color: #f0f1e4;
+  background: linear-gradient(135deg, #ecf0f1 0%, #d5dbdb 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,41 +31,38 @@
 }
 
 .App-header {
-  /* background-color: #282c34; */
-  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: #a0a39e;
+  color: #2c3e50;
   z-index: 0;
-
+  padding: 20px 0;
 }
 
 .scenes {
   display: flex;
-  width: 80vw;
-  overflow-x: auto;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: 90vw;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 15px;
 }
 
 .scene {
-  margin: 0.2%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
+  border: 2px solid #95a5a6;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
-.scene {
-  border-style: solid;
-  border-color: #978e8c;
-  border-radius: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 0px;
-  padding-right: 0px;
-  background-color: #f0f1e4;
-
+.scene:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .trackName {
@@ -73,15 +71,45 @@
 }
 
 .sceneHeader {
-  margin: 1%;
-  /* display: flex;
-  flex-direction: row; */
-  padding: 0%;
+  margin: 0;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 10px 10px 0 0;
+  color: white;
 }
 
 .sceneTitleBar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.sceneTitleLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sceneTitleLeft h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+
+.sceneControls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.sceneControls svg {
+  color: white;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.sceneControls svg:hover {
+  color: #3498db;
+  transform: scale(1.1);
 }
 
 iframe {
@@ -102,14 +130,16 @@ p {
 
 a:link,
 a:visited {
-  color: #8e797b;
+  color: #3498db;
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  transition: color 0.2s ease;
 }
 
 a:hover,
 a:active {
+  color: #2980b9;
   text-decoration: underline;
 }
 
@@ -123,7 +153,43 @@ label {
 }
 
 form {
-  color: #8e797b;
+  color: #2c3e50;
+  padding: 15px 20px;
+}
+
+.tracklist form {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  margin: 0;
+}
+
+.tracklist form input[type="text"] {
+  padding: 8px 12px;
+  border: 1px solid #95a5a6;
+  border-radius: 6px;
+  font-size: 14px;
+  margin: 5px;
+  transition: border-color 0.2s ease;
+}
+
+.tracklist form input[type="text"]:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.tracklist form label {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.track {
+  padding: 10px 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.track:last-child {
+  border-bottom: none;
 }
 
 .infoAlert {
