@@ -29,7 +29,7 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 5px 20px;
   background-color: #aab9b0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -207,6 +207,25 @@ form {
 .tracklist form label {
   font-weight: 500;
   color: #8e797b;
+}
+
+.scene-content {
+  position: relative;
+  max-height: 10000px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.scene-content.collapsed {
+  max-height: 1px;
+}
+
+.scene-content.collapsed form,
+.scene-content.collapsed .track {
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .track {
