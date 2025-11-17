@@ -21,9 +21,11 @@ export function PlayButton({ scenes, setScenes }) {
   const firstScriptTag = document.getElementsByTagName("script")[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+  const hasScenes = scenes.length > 0;
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={`create-scene-form ${hasScenes ? 'compact' : ''}`}>
         <label htmlFor="sceneName">Scene Name: </label>
         <input type="text" id="sceneName" name="sceneName" placeholder="e.g Jungle Exploration" />
         <br />

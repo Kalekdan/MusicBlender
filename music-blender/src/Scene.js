@@ -218,8 +218,10 @@ export function Scene(props) {
     // sceneElement.remove();
   }
 
+  const hasNoTracks = tracks.length === 0;
+
   return (
-    <div className={"tracklist"} id={sceneName}>
+    <div className={`tracklist ${hasNoTracks ? 'empty-scene' : ''}`} id={sceneName}>
       <div className={"sceneHeader"}>
         <div className={"sceneTitleBar"}>
           <div className={"sceneTitleLeft"}>

@@ -37,8 +37,6 @@
 }
 
 .App-header {
-  /* background-color: #282c34; */
-  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +44,80 @@
   font-size: calc(10px + 2vmin);
   color: #a0a39e;
   z-index: 0;
+  padding: 20px 0;
+  transition: all 0.3s ease-in-out;
+}
 
+.App-header.with-scenes {
+  padding: 10px 0;
+}
+
+.create-scene-form {
+  background-color: #ffffff;
+  border: 2px solid #978e8c;
+  border-radius: 12px;
+  padding: 30px 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  transition: all 0.3s ease-in-out;
+  max-width: 600px;
+  width: 90%;
+}
+
+.create-scene-form.compact {
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  max-width: 500px;
+}
+
+.create-scene-form label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #8e797b;
+  margin-bottom: 8px;
+}
+
+.create-scene-form.compact label {
+  display: inline;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.create-scene-form input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #978e8c;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.create-scene-form.compact input[type="text"] {
+  width: auto;
+  display: inline-block;
+  padding: 8px 12px;
+  font-size: 14px;
+  margin-bottom: 0;
+  margin-right: 10px;
+  min-width: 200px;
+}
+
+.create-scene-form input[type="text"]:focus {
+  outline: none;
+  border-color: #aab9b0;
+  box-shadow: 0 0 0 3px rgba(170, 185, 176, 0.2);
+}
+
+.create-scene-form br {
+  display: block;
+}
+
+.create-scene-form.compact br {
+  display: none;
 }
 
 .scenes {
@@ -92,6 +163,11 @@
 }
 
 .scene.collapsed .sceneHeader {
+  border-radius: 13px;
+}
+
+/* Fix border radius when scene has no tracks (empty scene) */
+.scene.expanded .empty-scene .sceneHeader {
   border-radius: 13px;
 }
 

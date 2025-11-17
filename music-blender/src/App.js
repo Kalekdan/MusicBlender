@@ -34,7 +34,7 @@ function App() {
         </div>
       </div>
       <img className={"logo"} src={require("./media/musicblenderlogo.png")} alt="Music Blender Logo" />
-      <header className="App-header">
+      <header className={`App-header ${scenes.length > 0 ? 'with-scenes' : ''}`}>
         <PlayButton scenes={scenes} setScenes={setScenes}></PlayButton>
       </header>
       <div className={"footerdiv"}>
