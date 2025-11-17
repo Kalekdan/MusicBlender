@@ -210,22 +210,13 @@ form {
 }
 
 .scene-content {
-  position: relative;
   max-height: 10000px;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
 }
 
 .scene-content.collapsed {
-  max-height: 1px;
-}
-
-.scene-content.collapsed form,
-.scene-content.collapsed .track {
-  visibility: hidden;
-  height: 0;
-  margin: 0;
-  padding: 0;
+  max-height: 0;
 }
 
 .track {
