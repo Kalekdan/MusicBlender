@@ -169,8 +169,8 @@
 }
 
 /* Fix border radius when scene has no tracks (empty scene) */
-.tracklist.empty-scene .sceneHeader {
-  border-radius: 13px;
+.scene.expanded .tracklist.empty-scene .sceneHeader {
+  border-radius: 13px !important;
 }
 
 .sceneTitleBar {
