@@ -21,19 +21,21 @@ export function PlayButton({ scenes, setScenes }) {
   const firstScriptTag = document.getElementsByTagName("script")[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+  const hasScenes = scenes.length > 0;
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label for="sceneName">Scene Name: </label>
-        <input type="text" id="sceneName" name="sceneName" placeholder="e.g Jungle Exploration"></input>
-        <br></br>
+      <form onSubmit={handleSubmit} className={`create-scene-form ${hasScenes ? 'compact' : ''}`}>
+        <label htmlFor="sceneName">Scene Name: </label>
+        <input type="text" id="sceneName" name="sceneName" placeholder="e.g Jungle Exploration" />
+        <br />
         <Button variant='contained' id="createSceneButton" type="submit">
           Create Scene
         </Button>
       </form>
-      <div class={"scenes"}>
+      <div className={"scenes"}>
         {scenes.map((item, i) => (
-          <div class={"scene"} key={i}>
+          <div className={"scene"} key={i}>
             {item}
           </div>
         ))}

@@ -1,17 +1,31 @@
 import Track from "./Track";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPause, faPlay, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faPause, faPlay, faClose, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import { v4 as uuidv4 } from "uuid";
 
 export function Scene(props) {
   const [tracks, setTracks] = useState([]);
+  const [isExpanded, setIsExpanded] = useState(true);
   const sceneName = props.sceneName;
   const playingColor = "#1d9500";
   const defaultColor = "#978e8c";
   const regex =
     /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/i;
+
+  // Update parent div class when expanded state changes
+  useEffect(() => {
+    const sceneDiv = document.getElementById(sceneName)?.parentElement;
+    if (sceneDiv) {
+      if (isExpanded) {
+        sceneDiv.classList.remove('collapsed');
+        sceneDiv.classList.add('expanded');
+      } else {
+        sceneDiv.classList.remove('expanded');
+        sceneDiv.classList.add('collapsed');
+      }
+    }
+  }, [isExpanded, sceneName]);
 
   // When tracks are provided, add to scene
   useEffect(() => {
@@ -204,54 +218,66 @@ export function Scene(props) {
     // sceneElement.remove();
   }
 
+  const hasNoTracks = tracks.length === 0;
+
   return (
-    <div class={"tracklist"} id={sceneName}>
-      <div class={"sceneHeader"}>
-        <div class={"sceneTitleBar"}>
-          <p style={{ margin: "0 10px" }}></p>
-          <h4>{sceneName}</h4>
-          <FontAwesomeIcon
-          icon={faClose}
-          onClick={deleteScene}
-          style={{ margin: "0 10px 0 0px", width: "20px" }}
-        />
+    <div className={`tracklist ${hasNoTracks ? 'empty-scene' : ''}`} id={sceneName}>
+      <div className={"sceneHeader"}>
+        <div className={"sceneTitleBar"}>
+          <div className={"sceneTitleLeft"}>
+            <FontAwesomeIcon
+              icon={isExpanded ? faChevronUp : faChevronDown}
+              onClick={() => setIsExpanded(!isExpanded)}
+              style={{ margin: "0 10px", cursor: "pointer" }}
+            />
+            <h4>{sceneName}</h4>
+          </div>
+          <div className={"sceneControls"}>
+            <FontAwesomeIcon
+              icon={faPause}
+              onClick={pauseScene}
+              style={{ margin: "0 5px", cursor: "pointer" }}
+            />
+            <FontAwesomeIcon
+              icon={faPlay}
+              onClick={playScene}
+              style={{ margin: "0 5px", cursor: "pointer" }}
+            />
+            <FontAwesomeIcon
+              icon={faClose}
+              onClick={deleteScene}
+              style={{ margin: "0 5px", cursor: "pointer" }}
+            />
+          </div>
         </div>
-        <FontAwesomeIcon
-          icon={faPause}
-          onClick={pauseScene}
-          style={{ margin: "0 5px" }}
-        />
-        <FontAwesomeIcon
-          icon={faPlay}
-          onClick={playScene}
-          style={{ margin: "0 5px" }}
-        />
       </div>
-      <form onSubmit={handleSubmit}>
-        <label for="trackURL">Track URL: </label>
-        <input
-          type="text"
-          id="trackURL"
-          name="trackURL"
-          placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        ></input>
-        <br></br>
-        <label for="trackName">Track Name: </label>
-        <input
-          type="text"
-          id="trackName"
-          name="trackName"
-          placeholder="e.g. Forest Ambience"
-        ></input>
-        <Button variant="contained" type="submit">
-          Add Tracks
-        </Button>
-      </form>
-      {tracks.map((item, i) => (
-        <div class={"track"} key={uuidv4()}>
-          {item}
-        </div>
-      ))}
+      <div className={`scene-content ${!isExpanded ? 'collapsed' : ''}`}>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="trackURL">Track URL: </label>
+          <input
+            type="text"
+            id="trackURL"
+            name="trackURL"
+            placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          />
+          <br />
+          <label htmlFor="trackName">Track Name: </label>
+          <input
+            type="text"
+            id="trackName"
+            name="trackName"
+            placeholder="e.g. Forest Ambience"
+          />
+          <Button variant="contained" type="submit">
+            Add Tracks
+          </Button>
+        </form>
+        {tracks.map((item, i) => (
+          <div className={"track"} key={i}>
+            {item}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

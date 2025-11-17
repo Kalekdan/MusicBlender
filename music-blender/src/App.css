@@ -27,11 +27,16 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 20px;
+  background-color: #aab9b0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
 }
 
 .App-header {
-  /* background-color: #282c34; */
-  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,32 +44,108 @@
   font-size: calc(10px + 2vmin);
   color: #a0a39e;
   z-index: 0;
+  padding: 20px 0;
+  transition: all 0.3s ease-in-out;
+}
 
+.App-header.with-scenes {
+  padding: 10px 0;
+}
+
+.create-scene-form {
+  background-color: #ffffff;
+  border: 2px solid #978e8c;
+  border-radius: 12px;
+  padding: 30px 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 30px auto;
+  transition: all 0.3s ease-in-out;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+}
+
+.create-scene-form.compact {
+  padding: 15px 20px;
+  margin: 0 auto 15px auto;
+  max-width: 500px;
+  text-align: left;
+}
+
+.create-scene-form label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #8e797b;
+  margin-bottom: 8px;
+}
+
+.create-scene-form.compact label {
+  display: inline;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.create-scene-form input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #978e8c;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.create-scene-form.compact input[type="text"] {
+  width: auto;
+  display: inline-block;
+  padding: 8px 12px;
+  font-size: 14px;
+  margin-bottom: 0;
+  margin-right: 10px;
+  min-width: 200px;
+}
+
+.create-scene-form input[type="text"]:focus {
+  outline: none;
+  border-color: #aab9b0;
+  box-shadow: 0 0 0 3px rgba(170, 185, 176, 0.2);
+}
+
+.create-scene-form br {
+  display: block;
+}
+
+.create-scene-form.compact br {
+  display: none;
 }
 
 .scenes {
-  display: flex;
-  width: 80vw;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-auto-rows: minmax(auto, max-content);
+  width: 90vw;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 15px;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: start;
 }
 
 .scene {
-  margin: 0.2%;
-  padding: 0%;
-}
-
-.scene {
-  border-style: solid;
-  border-color: #978e8c;
-  border-radius: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 0px;
-  padding-right: 0px;
+  margin: 0;
+  padding: 0;
+  border: 2px solid #978e8c;
+  border-radius: 15px;
   background-color: #f0f1e4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
 
+.scene:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .trackName {
@@ -73,15 +154,68 @@
 }
 
 .sceneHeader {
-  margin: 1%;
-  /* display: flex;
-  flex-direction: row; */
-  padding: 0%;
+  margin: 0;
+  padding: 12px 15px;
+  background-color: #aab9b0;
+  color: #f0f1e4;
+}
+
+.scene.expanded .sceneHeader {
+  border-radius: 13px 13px 0 0;
+}
+
+.scene.collapsed .sceneHeader {
+  border-radius: 13px;
+}
+
+/* Fix border radius when scene has no tracks (empty scene) */
+.scene.expanded .tracklist.empty-scene .sceneHeader {
+  border-radius: 13px !important;
 }
 
 .sceneTitleBar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.sceneTitleLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sceneTitleLeft h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f0f1e4;
+}
+
+.sceneControls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.sceneControls svg {
+  color: #f0f1e4;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.sceneControls svg:hover {
+  color: #978e8c;
+  transform: scale(1.1);
+}
+
+.sceneTitleLeft svg {
+  color: #f0f1e4;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.sceneTitleLeft svg:hover {
+  transform: scale(1.1);
 }
 
 iframe {
@@ -124,6 +258,88 @@ label {
 
 form {
   color: #8e797b;
+  padding: 12px 15px;
+}
+
+.tracklist form {
+  background-color: #f0f1e4;
+  margin: 0;
+}
+
+.tracklist form input[type="text"] {
+  padding: 6px 10px;
+  border: 1px solid #978e8c;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 5px;
+  background-color: white;
+  transition: border-color 0.2s ease;
+}
+
+.tracklist form input[type="text"]:focus {
+  outline: none;
+  border-color: #aab9b0;
+  box-shadow: 0 0 0 2px rgba(170, 185, 176, 0.2);
+}
+
+.tracklist form label {
+  font-weight: 500;
+  color: #8e797b;
+}
+
+.scene-content {
+  max-height: 10000px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.scene-content.collapsed {
+  max-height: 0;
+}
+
+.track {
+  padding: 10px 15px;
+  border-top: 1px solid #d0d0d0;
+}
+
+.track:first-of-type {
+  border-top: 1px solid #978e8c;
+}
+
+/* Custom button styling to match app theme */
+.MuiButton-root {
+  background-color: #978e8c !important;
+  color: #f0f1e4 !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.2s ease !important;
+}
+
+.MuiButton-root:hover {
+  background-color: #8e797b !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px);
+}
+
+.MuiButton-root:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Header buttons specifically */
+.headerbar .MuiButton-root {
+  background-color: #f0f1e4 !important;
+  color: #8e797b !important;
+  border: 2px solid #978e8c !important;
+}
+
+.headerbar .MuiButton-root:hover {
+  background-color: #978e8c !important;
+  color: #f0f1e4 !important;
+  border-color: #8e797b !important;
 }
 
 .infoAlert {
